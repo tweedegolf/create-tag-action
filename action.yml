@@ -1,0 +1,8 @@
+name: Create tag action
+description: Format a deploy version tag for a git repository
+
+runs:
+  using: composite
+  steps:
+    - name: Create version tag
+      run: echo "tag=$(git show -s --format="%ct-%h" $GITHUB_SHA)" >> $GITHUB_ENV
