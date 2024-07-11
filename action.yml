@@ -5,4 +5,5 @@ runs:
   using: composite
   steps:
     - name: Create version tag
+      shell: bash
       run: echo "tag=$(git show -s --format="%ct-%h" $GITHUB_SHA)" >> $GITHUB_ENV
