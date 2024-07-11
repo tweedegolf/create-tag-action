@@ -15,8 +15,9 @@ jobs:
     steps:
       # ...
       - uses: actions/checkout@v4
-      
+
       - name: Create tag
+        shell: bash
         uses: tweedegolf/create-tag-action@main
 
       # ...
