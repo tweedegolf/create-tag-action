@@ -6,4 +6,4 @@ runs:
   steps:
     - name: Create version tag
       shell: bash
-      run: echo "tag=$(git show -s --format="%ct-%h" $GITHUB_SHA)" >> $GITHUB_ENV
+      run: echo "tag=$(git show -s --format='%ct-%H' $GITHUB_SHA | cut -c 1-18)" >> $GITHUB_ENV
