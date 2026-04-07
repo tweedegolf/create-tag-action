@@ -6,4 +6,5 @@ runs:
   steps:
     - name: Create version tag
       shell: bash
+      # Tag format: <unix-timestamp>-<7-char-commit-sha>, for example 1713187200-1a2b3c4.
       run: echo "tag=$(git show -s --format='%ct-%H' $GITHUB_SHA | cut -c 1-18)" >> $GITHUB_ENV
