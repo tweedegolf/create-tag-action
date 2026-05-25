@@ -1,10 +1,19 @@
 name: Create tag action
 description: Format a deploy version tag for a git repository
 
+outputs:
+  tag:
+    description: The generated tag in the format <unix-timestamp>-<7-char-commit-sha>
+    value: ${{ steps.create-tag.outputs.tag }}
+
 runs:
   using: composite
   steps:
     - name: Create version tag
+      id: create-tag
       shell: bash
       # Tag format: <unix-timestamp>-<7-char-commit-sha>, for example 1713187200-1a2b3c4.
-      run: echo "tag=$(git show -s --format='%ct-%H' $GITHUB_SHA | cut -c 1-18)" >> $GITHUB_ENV
+      run: |
+        TAG=$(git show -s --format='%ct-%H' $GITHUB_SHA | cut -c 1-18)
+        echo "tag=$TAG" >> $GITHUB_OUTPUT
+        echo "tag=$TAG" >> $GITHUB_ENV
